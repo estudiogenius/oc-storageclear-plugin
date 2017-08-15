@@ -20,7 +20,7 @@ class StorageDump extends Command
      * Execute the console command.
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $this->call('storage:dump-project');
         $this->call('storage:dump-database');
