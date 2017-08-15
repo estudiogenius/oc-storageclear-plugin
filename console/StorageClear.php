@@ -20,7 +20,7 @@ class StorageClear extends Command
      * Execute the console command.
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         // remove files without related register...
         $this->info(trans('genius.storageclear::lang.clear.seeking.files'));
