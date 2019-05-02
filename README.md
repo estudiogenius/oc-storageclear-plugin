@@ -1,4 +1,4 @@
-Storage Cleaner
+Storage Cleaner Plugin for OctoberCMS
 ==
 
 # Description
