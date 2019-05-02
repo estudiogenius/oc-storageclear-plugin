@@ -1,4 +1,5 @@
-[TOC]
+Storage Cleaner
+==
 
 # Description
 
@@ -7,10 +8,10 @@ This amazing October CMS plugin will scan the uploads folder, searching disconne
 > Heads up! 
 > This feature will delete files from your disk and data in your database.
 
-Adictionally, this script provide a fast way to backup your project. Generating a zip file of your entire project (optimized, of course) and dump your database.
+Aditionally, this script provides a fast way to backup your project by generating a zip file of your entire project (optimized, of course) and a database dump.
 
 > Heads up again! 
-> This features require that your php can run the awesome `shell_exec` and your OS also has the program `mysqldump` available to be used.
+> These features require that your php can run the awesome `shell_exec` and your OS also has the program `mysqldump` available to be used.
 
 # Usage
 
@@ -36,6 +37,17 @@ php artisan storage:dump-database
 - Then will be located the records of File entity that does not have disk files, they will also be deleted;
 - Finally... remove empty folders!
 
+You can pass options if you want to execute a subset of these procedures. Available options are:
+- `--files`, `-f`: Remove unlinked files only
+- `--registers`, `-r`: Remove records from System\Models\File that have no file associated
+- `--directories`, `-d`: Remove empty directories
+
+Example:
+```bash
+# remove unlinked files and empty directories only
+php artisan storage:clear -f -d
+```
+
 ## Storage Dump Project command
 - This command will generate a optimized zip of all your project files and plugins;
 - After, you can easily upload your zip at any host, extract them and be happy!
@@ -48,5 +60,3 @@ php artisan storage:dump-database
 - Finish brazilian-portuguese translations;
 - Create more translations files;
 - Create a backend interface as shortcut for commands;
-
-
