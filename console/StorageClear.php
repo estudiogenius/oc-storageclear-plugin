@@ -1,4 +1,4 @@
-<?php namespace Genius\StorageClear\Console;
+<?php namespace Wiz\StorageClear\Console;
 
 use Storage;
 use Illuminate\Console\Command;
@@ -27,7 +27,7 @@ class StorageClear extends Command
 
         // remove files without related register if files option is set...
         if($doAll || $this->option('files')) {
-            $this->info(trans('genius.storageclear::lang.clear.seeking.files'));
+            $this->info(trans('wiz.storageclear::lang.clear.seeking.files'));
 
             $allFiles = Storage::allFiles('uploads');
             $count = 0;
@@ -39,12 +39,12 @@ class StorageClear extends Command
                     $count++;
                 }
             }
-            $this->info(trans('genius.storageclear::lang.clear.removed.files', compact('count', 'total')));
+            $this->info(trans('wiz.storageclear::lang.clear.removed.files', compact('count', 'total')));
         }
 
         // remove registers without file if register option is set...
         if($doAll || $this->option('registers')){
-            $this->info(trans('genius.storageclear::lang.clear.seeking.registers'));
+            $this->info(trans('wiz.storageclear::lang.clear.seeking.registers'));
 
             $allFiles = File::all(['id', 'disk_name', 'attachment_type', 'attachment_id', 'is_public']);
             $count = 0;
@@ -66,12 +66,12 @@ class StorageClear extends Command
                 }
 
             }
-            $this->info(trans('genius.storageclear::lang.clear.removed.registers', compact('count', 'total')));
+            $this->info(trans('wiz.storageclear::lang.clear.removed.registers', compact('count', 'total')));
         }
 
         // Remove empty directories if directories option is set
         if($doAll || $this->option('directories')) {
-            $this->info(trans('genius.storageclear::lang.clear.seeking.directories'));
+            $this->info(trans('wiz.storageclear::lang.clear.seeking.directories'));
 
             $allFolders = array_reverse(Storage::allDirectories('uploads'));
             $count = 0;
@@ -83,7 +83,7 @@ class StorageClear extends Command
                     $count++;
                 }
             }
-            $this->info(trans('genius.storageclear::lang.clear.removed.directories', compact('count', 'total')));
+            $this->info(trans('wiz.storageclear::lang.clear.removed.directories', compact('count', 'total')));
         }
     }
 

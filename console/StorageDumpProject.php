@@ -1,8 +1,6 @@
-<?php namespace Genius\StorageClear\Console;
+<?php namespace Wiz\StorageClear\Console;
 
-use Storage;
 use Illuminate\Console\Command;
-use System\Models\File;
 
 class StorageDumpProject extends Command
 {
@@ -22,19 +20,19 @@ class StorageDumpProject extends Command
      */
     public function handle()
     {
-        $this->info(trans('genius.storageclear::lang.project.cleaning'));
+        $this->info(trans('wiz.storageclear::lang.project.cleaning'));
 
         $this->callSilent('storage:clear');
         $this->callSilent('cache:clear');
         $this->callSilent('optimize');
 
-        $this->info(trans('genius.storageclear::lang.project.start'));
+        $this->info(trans('wiz.storageclear::lang.project.start'));
 
         $file = base_path('__dump-' . date('Y-m-d-H-i-s') . '.zip');
 
         shell_exec("zip -rq '$file' . -x '*.DS_Store' -x '__*' -x '.idea' -x '.idea/*' -x '.env'");
 
-        $this->info(trans('genius.storageclear::lang.project.end', compact('file')));
+        $this->info(trans('wiz.storageclear::lang.project.end', compact('file')));
     }
 
     /**

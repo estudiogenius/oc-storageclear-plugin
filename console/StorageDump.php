@@ -1,8 +1,6 @@
-<?php namespace Genius\StorageClear\Console;
+<?php namespace Wiz\StorageClear\Console;
 
-use Storage;
 use Illuminate\Console\Command;
-use System\Models\File;
 
 class StorageDump extends Command
 {

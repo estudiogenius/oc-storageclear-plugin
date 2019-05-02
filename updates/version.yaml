@@ -1,5 +1,8 @@
-1.0.1: First version of Storage Cleaner
+1.0.1: 'First version of Storage Cleaner'
 1.1.0:
-  - Translations for all commands feedbacks
+  - 'Translations for all commands feedbacks'
   - 'New commands available: php artisan storage:dump, dump-project abd dump-database'
-1.1.1: Removed .idea and .env from project dump
+1.1.1: 'Removed .idea and .env from project dump'
+1.1.2:
+  - 'Added options for process selection on storage:clear command'
+  - 'Changed namespace to prevent conflicts with original plugin'
