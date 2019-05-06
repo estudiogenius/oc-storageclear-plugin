@@ -33,6 +33,7 @@ php artisan storage:dump-database
 
 ## Storage Clean command
 - This command will look in your storage directory: storage/app/uploads for files that are not linked to the \System\Models\File entity (which we love so much);
+    - Duplicated records will first be removed from the database. Duplicates are determined by duplication of the `file_name`, `file_size`, `content_type`, `field`, `attachment_id` and `attachment_type` fields.
 	- Files that have no link will be removed, including the thumbnails generated at runtime (do not worry, they [thumbnails] will be regenerated according to the need);
 - Then will be located the records of File entity that does not have disk files, they will also be deleted;
 - Finally... remove empty folders!
@@ -41,6 +42,7 @@ You can pass options if you want to execute a subset of these procedures. Availa
 - `--files`, `-f`: Remove unlinked files only
 - `--registers`, `-r`: Remove records from System\Models\File that have no file associated
 - `--directories`, `-d`: Remove empty directories
+- `--duplicates`, `-w`: Remove duplicated records
 
 Example:
 ```bash

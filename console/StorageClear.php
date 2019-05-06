@@ -23,7 +23,30 @@ class StorageClear extends Command
      */
     public function handle()
     {
-        $doAll = empty($this->option('files')) && empty($this->option('registers')) && empty($this->option('directories'));
+        $doAll = empty($this->option('files')) && empty($this->option('registers')) && empty($this->option('directories')) && empty($this->option('duplicates'));
+
+        # Remove duplicated entries,
+        # Duplicates are based on file_name, file_size, content_type, field, attachment_id and attachment_type
+        if($doAll || $this->option('duplicates')) {
+            $remove = [];
+
+            $duplicates = \Db::table('system_files')
+                ->selectRaw('COUNT(*) c, GROUP_CONCAT(id) as ids, file_name, file_size, content_type, field, attachment_id, attachment_type')
+                ->groupBy(['file_name', 'file_size', 'content_type', 'field', 'attachment_id', 'attachment_type'])
+                ->having('c', '>', 1)
+                ->get();
+
+            foreach($duplicates as $duplicate) {
+                $ids = explode(',', $duplicate->ids);
+                array_pop($ids);
+                $remove = array_merge($ids, $remove);
+            }
+
+            File::whereIn('id', $remove)
+                ->delete();
+
+            $this->info(trans('wiz.storageclear::lang.clear.removed.duplicates', ['count' => count($remove), 'total' => $duplicates->count()]));
+        }
 
         // remove files without related register if files option is set...
         if($doAll || $this->option('files')) {
@@ -106,6 +129,7 @@ class StorageClear extends Command
             ['files', 'f', InputOption::VALUE_NONE, 'Remove files.', null],
             ['registers', 'r', InputOption::VALUE_NONE, 'Remove registers.', null],
             ['directories', 'd', InputOption::VALUE_NONE, 'Remove empty directories.', null],
+            ['duplicates', 'w', InputOption::VALUE_NONE, 'Remove duplicates.', null],
         ];
     }
 
