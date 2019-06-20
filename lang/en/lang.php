@@ -14,7 +14,8 @@ return [
         'removed' => [
             'files' => '... :count files removed, :total found!',
             'registers' => '... :count registers removed, :total found!',
-            'directories' => '... :count empty directories removed, :total found!'
+            'directories' => '... :count empty directories removed, :total found!',
+            'duplicates' => '... :count duplicated registers removed, :total found!'
         ]
     ],
     'project' => [

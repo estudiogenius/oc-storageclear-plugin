@@ -1,8 +1,6 @@
-<?php namespace Genius\StorageClear\Console;
+<?php namespace Wiz\StorageClear\Console;
 
-use Storage;
 use Illuminate\Console\Command;
-use System\Models\File;
 
 class StorageDumpDatabase extends Command
 {
@@ -20,10 +18,10 @@ class StorageDumpDatabase extends Command
      * Execute the console command.
      * @return void
      */
-    public function fire()
+    public function handle()
     {
 
-        $this->info(trans('genius.storageclear::lang.database.start'));
+        $this->info(trans('wiz.storageclear::lang.database.start'));
 
         $database = config('database.connections.' . config('database.default'));
         $file = base_path('__dump-' . date('Y-m-d-H-i-s') . '.sql');
@@ -36,7 +34,7 @@ class StorageDumpDatabase extends Command
             " && mysqldump --defaults-extra-file=\$credentialsFile {$database['database']} > '$file'" .
             " && rm \$credentialsFile");
 
-        $this->info(trans('genius.storageclear::lang.database.end', compact('file')));
+        $this->info(trans('wiz.storageclear::lang.database.end', compact('file')));
     }
 
     /**

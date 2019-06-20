@@ -1,9 +1,9 @@
-<?php namespace Genius\StorageClear;
+<?php namespace Wiz\StorageClear;
 
-use Genius\StorageClear\Console\StorageClear;
-use Genius\StorageClear\Console\StorageDump;
-use Genius\StorageClear\Console\StorageDumpDatabase;
-use Genius\StorageClear\Console\StorageDumpProject;
+use Wiz\StorageClear\Console\StorageClear;
+use Wiz\StorageClear\Console\StorageDump;
+use Wiz\StorageClear\Console\StorageDumpDatabase;
+use Wiz\StorageClear\Console\StorageDumpProject;
 use System\Classes\PluginBase;
 
 /**
@@ -19,10 +19,11 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name' => 'genius.storageclear::lang.plugin.name',
-            'description' => 'genius.storageclear::lang.plugin.description',
-            'author' => 'Genius',
-            'icon' => 'icon-recycle'
+            'name' => 'wiz.storageclear::lang.plugin.name',
+            'description' => 'wiz.storageclear::lang.plugin.description',
+            'author' => 'Wiz Comunicaciones',
+            'icon' => 'icon-recycle',
+            'homepage' => 'https://github.com/wiz-comunicaciones/oc-storageclear-plugin'
         ];
     }
 
@@ -32,9 +33,9 @@ class Plugin extends PluginBase
      */
     public function register()
     {
-        $this->registerConsoleCommand('genius.storage:clear', StorageClear::class);
-        $this->registerConsoleCommand('genius.storage:dump', StorageDump::class);
-        $this->registerConsoleCommand('genius.storage:dump-project', StorageDumpProject::class);
-        $this->registerConsoleCommand('genius.storage:dump-database', StorageDumpDatabase::class);
+        $this->registerConsoleCommand('wiz.storage:clear', StorageClear::class);
+        $this->registerConsoleCommand('wiz.storage:dump', StorageDump::class);
+        $this->registerConsoleCommand('wiz.storage:dump-project', StorageDumpProject::class);
+        $this->registerConsoleCommand('wiz.storage:dump-database', StorageDumpDatabase::class);
     }
 }

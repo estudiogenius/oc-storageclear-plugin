@@ -1,8 +1,6 @@
-<?php namespace Genius\StorageClear\Console;
+<?php namespace Wiz\StorageClear\Console;
 
-use Storage;
 use Illuminate\Console\Command;
-use System\Models\File;
 
 class StorageDump extends Command
 {
@@ -20,7 +18,7 @@ class StorageDump extends Command
      * Execute the console command.
      * @return void
      */
-    public function fire()
+    public function handle()
     {
         $this->call('storage:dump-project');
         $this->call('storage:dump-database');
